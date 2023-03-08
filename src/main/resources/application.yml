@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:8001}
+spring:
+  application:
+    name: ms-product
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    password: '123456'
+#    url: jdbc:postgresql://db-postgres-product:5432/db_product
+#    username: postgres
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:ms-product
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+#    defer-datasource-initialization: true
+#    hibernate:
+#      ddl-auto: update
+    properties:
+      hibernate:
+        '[show_sql]': true
+        '[use_sql_comments]': false
+        '[format_sql]': false
+    show-sql: true
+#  zipkin:
+#    base-url: http://ms-zipkin-server:9411
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://ms-discovery-server:8761/eureka
+#  instance:
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
