@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codearti.model.dto.ProductCreateRequestDto;
 import com.codearti.model.dto.ProductResponseDto;
 import com.codearti.model.dto.ProductUpdateRequestDto;
+import com.codearti.model.dto.ProductUpdateStockRequestDto;
 import com.codearti.model.entity.ProductStatus;
 import com.codearti.service.ProductService;
 
@@ -74,11 +75,11 @@ public class ProductController {
 	
 	@PatchMapping(value = "/{id}/stock", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_PROBLEM_JSON_VALUE },
 			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_PROBLEM_JSON_VALUE })
-	public ResponseEntity<ProductResponseDto> updateStock(@PathVariable Long id, @Valid @RequestBody ProductUpdateRequestDto productUpdateRequestDto){
+	public ResponseEntity<ProductResponseDto> updateStock(@PathVariable Long id, @Valid @RequestBody ProductUpdateStockRequestDto productUpdateStockRequestDto){
 		var port = webServerAppCtxt.getWebServer().getPort();
-		var result = service.update(id, productUpdateRequestDto, port);
+		var result = service.updateStok(id, productUpdateStockRequestDto, port);
 		return ResponseEntity.ok(result);
-	}
+	}	
 	
 	@DeleteMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_PROBLEM_JSON_VALUE },
 			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_PROBLEM_JSON_VALUE })

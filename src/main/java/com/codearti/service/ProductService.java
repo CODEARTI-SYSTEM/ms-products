@@ -69,18 +69,7 @@ public class ProductService {
 		repository.save(productEntity);
 		log.info("saved");
 		return mapper.entityToResponse(productEntity, port);
-	}
-	
-	@Transactional
-	public ProductResponseDto update_(Long id, ProductUpdateRequestDto productRequest, int port) {
-		log.info("update");
-		ProductEntity productEntity = getProductById(id);
-		BeanUtils.copyProperties(productRequest, productEntity);
-		productEntity.setCategory(CategoryEntity.builder().id(productRequest.getCategoryId()).build());
-		repository.save(productEntity);
-		log.info("updated");
-		return mapper.entityToResponse(productEntity, port);
-	}
+	}	
 	
 	@Transactional
 	public ProductResponseDto update(Long id, ProductUpdateRequestDto productRequest, int port) {
@@ -101,10 +90,10 @@ public class ProductService {
 		repository.save(productEntity);
 		log.info("updated");
 		return mapper.entityToResponse(productEntity, port);
-	}
+	}	
 	
 	private ProductEntity getProductById(Long id) {
-		Optional<ProductEntity> productEntityOp = repository.findById(id).filter(p -> p.getDeleted() == DeletedProduct.DELETED);
+		Optional<ProductEntity> productEntityOp = repository.findById(id).filter(p -> p.getDeleted() == DeletedProduct.CREATED);
 		if (!productEntityOp.isPresent()) {
 			throw new ResourceNotFoundException("Resource not found", HttpStatus.NOT_FOUND);
 		}
