@@ -25,7 +25,7 @@ import com.codearti.model.dto.ProductUpdateStockRequestDto;
 import com.codearti.model.entity.ProductStatus;
 import com.codearti.service.ProductService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
